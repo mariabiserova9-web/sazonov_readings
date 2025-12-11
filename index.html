@@ -9,7 +9,6 @@
       --primary: #0096d6;
       --primary-dark: #0073a7;
       --bg-dark: #05070b;
-
       --bg-light: #f4f7fb;
       --text-main: #111827;
       --text-muted: #4b5563;
@@ -56,6 +55,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      flex-wrap: wrap; /* позволяем навигации переноситься на новую строку */
     }
 
     .logo-title {
@@ -90,7 +90,7 @@
       font-size: 1.02rem;
       font-weight: 600;
       color: #f9fafb;
-      white-space: nowrap;
+      white-space: normal; /* текст заголовка теперь может переноситься */
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -342,10 +342,8 @@
     }
 
     .sections-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
-      gap: 1.75rem;
-      align-items: flex-start;
+      display: block; /* секции идут друг за другом вертикально */
+      margin-top: 1.5rem;
     }
 
     section {
@@ -629,7 +627,7 @@
           <li><a href="#contacts">Контакты</a></li>
         </ul>
         <button id="langToggle" class="lang-toggle-btn" type="button" aria-label="Switch language to English">
-          <span class="flag" aria-hidden="true">🇷🇺</span>
+          <span class="flag" aria-hidden="true">🌐</span>
           <span class="lang-current">RU</span>
         </button>
       </nav>
@@ -701,6 +699,7 @@
             <li>Регистрация участников: 9:00–9:40</li>
             <li>Начало пленарного заседания: 10:00</li>
             <li>Формат участия: очно, очно-заочно, онлайн-доклады</li>
+             <li>18.12.2025</li>
           </ul>
           <p class="hero-side-note">
             Участникам выдаются электронные сертификаты и сборник материалов конференции.
@@ -718,6 +717,7 @@
             <li>Participant registration: 9:00–9:40 am</li>
             <li>Plenary session starts at 10:00 am</li>
             <li>Formats: in-person, blended, online presentations</li>
+            <li>12/18/2025/li>
           </ul>
           <p class="hero-side-note">
             All participants receive electronic certificates and a digital proceedings volume.
@@ -761,7 +761,7 @@
         </section>
 
         <section id="directions" class="section-card">
-          <h2 class="section-title">Основные направления конференции</h2>
+          <h2 class="section-title">Основные направления конференции / Major Themes</h2>
           <div class="lang lang-ru active">
             <p class="section-lead">
               Проблемное поле конференции включает следующие направления:
@@ -938,7 +938,7 @@
         </section>
 
         <section id="moderators" class="section-card">
-          <h2 class="section-title">Модераторы</h2>
+          <h2 class="section-title">Модераторы/ Moderators</h2>
           <div class="lang lang-ru active">
             <p class="section-lead">Модераторы пленарной части и дискуссии:</p>
             <ul class="person-list">
@@ -1028,11 +1028,11 @@
         </section>
 
         <section id="sazonov" class="section-card">
-          <h2 class="section-title">Кому посвящена конференция / In Honour of</h2>
+          <h2 class="section-title">Кому посвящена конференция / In Memory of</h2>
           <div class="sazonov-card">
             <div class="sazonov-photo">
-              <!-- Поместите фотографию А.Д. Сазонова под именем saz.jpeg -->
-              <img src="saz.jpeg" alt="Портрет Александра Дмитриевича Сазонова" />
+              <!-- Поместите фотографию А.Д. Сазонова под именем saz.jpg -->
+              <img src="saz.jpg" alt="Портрет Александра Дмитриевича Сазонова" />
             </div>
             <div>
               <div class="lang lang-ru active">
@@ -1195,11 +1195,9 @@
 
         if (lang === "ru") {
           currentSpan.textContent = "RU";
-          flagSpan.textContent = "🇷🇺";
           langToggleBtn.setAttribute("aria-label", "Switch language to English");
         } else {
           currentSpan.textContent = "EN";
-          flagSpan.textContent = "🇬🇧";
           langToggleBtn.setAttribute("aria-label", "Переключить язык на русский");
         }
       }
