@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XI Сазоновские педагогические чтения</title>
+  <style>
+    :root {
+      --primary: #0096d6;
+      --primary-dark: #0073a7;
+      --bg-dark: #05070b;
+      --bg-light: #f4f7fb;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --card-bg: #ffffff;
+      --border-soft: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus-visible {
+      text-decoration: underline;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 7, 11, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(156, 163, 175, 0.4);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .logo-title img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.17rem;
+      min-width: 0;
+    }
+
+    .site-subtitle {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      white-space: nowrap;
+    }
+
+    .site-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: #f9fafb;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #e5e7eb;
+      font-weight: 500;
+      padding-bottom: 0.1rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: #ffffff;
+      border-color: var(--primary);
+      text-decoration: none;
+    }
+
+    .lang-toggle-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(156, 163, 175, 0.8);
+      background: transparent;
+      color: #e5e7eb;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+    }
+
+    .lang-toggle-btn:hover,
+    .lang-toggle-btn:focus-visible {
+      background: var(--primary);
+      color: #020617;
+      border-color: var(--primary);
+      text-decoration: none;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .lang-toggle-btn span.flag {
+      font-size: 1rem;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+      color: var(--text-main);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, rgba(0, 150, 214, 0.16), transparent 55%),
+                  var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.4);
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    .hero-title {
+      font-size: clamp(1.7rem, 3vw, 2.1rem);
+      line-height: 1.25;
+      margin: 0 0 0.6rem;
+      color: #020617;
+    }
+
+    .hero-highlight {
+      color: var(--primary-dark);
+    }
+
+    .hero-meta {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-meta strong {
+      color: #111827;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #0b1120;
+      background: rgba(15, 23, 42, 0.02);
+    }
+
+    .badge.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #f9fafb;
+      box-shadow: 0 8px 20px rgba(0, 150, 214, 0.45);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.08s ease, box-shadow 0.08s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #f9fafb;
+      box-shadow: 0 12px 25px rgba(0, 150, 214, 0.45);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(0, 150, 214, 0.6);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(148, 163, 184, 0.7);
+      color: #0f172a;
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: rgba(15, 23, 42, 0.07);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .hero-sidecard {
+      background: radial-gradient(circle at top, rgba(0, 150, 214, 0.18), transparent 55%),
+                  linear-gradient(145deg, #020617, #020617 55%, #020617);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.6rem;
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-sidecard h2 {
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      color: #f9fafb;
+    }
+
+    .hero-sidecard p {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-side-meta {
+      font-size: 0.86rem;
+      color: #d1d5db;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-side-meta strong {
+      color: #f9fafb;
+    }
+
+    .hero-side-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.5rem 0 0.75rem;
+      font-size: 0.86rem;
+    }
+
+    .hero-side-list li::before {
+      content: "•";
+      margin-right: 0.4rem;
+      color: var(--primary);
+    }
+
+    .sections-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    section {
+      scroll-margin-top: 80px;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.5rem 1.3rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.35);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 1.05rem;
+      font-weight: 650;
+      margin: 0 0 0.7rem;
+      color: #020617;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.5);
+    }
+
+    .section-lead {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .columns-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    ul.clean {
+      margin: 0.4rem 0 0.2rem;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    ul.clean li + li {
+      margin-top: 0.2rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.5rem 0 0;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(156, 163, 175, 0.6);
+      white-space: nowrap;
+    }
+
+    .person-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.35rem 0 0;
+      font-size: 0.9rem;
+    }
+
+    .person-list li + li {
+      margin-top: 0.4rem;
+    }
+
+    .person-name {
+      font-weight: 600;
+    }
+
+    .person-role {
+      color: var(--text-muted);
+    }
+
+    .sazonov-card {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .sazonov-photo {
+      width: 120px;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .sazonov-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .download-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.4rem 0 0;
+      font-size: 0.9rem;
+    }
+
+    .download-item + .download-item {
+      margin-top: 0.35rem;
+    }
+
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(255, 255, 255, 0.7);
+      color: #111827;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+    }
+
+    .download-link:hover,
+    .download-link:focus-visible {
+      background: #e5f3fb;
+      border-color: var(--primary);
+      text-decoration: none;
+    }
+
+    .download-link span.icon {
+      font-size: 1rem;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-block strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .footnote {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem 1.5rem;
+      color: #9ca3af;
+      font-size: 0.78rem;
+    }
+
+    footer .footer-inner {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      padding-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .lang {
+      display: none;
+    }
+
+    .lang.active {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-sidecard {
+        order: -1;
+      }
+
+      .sections-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .logo-title {
+        justify-content: center;
+      }
+
+      .site-subtitle {
+        white-space: normal;
+      }
+
+      main {
+        padding-top: 1.25rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-card,
+      .hero-sidecard,
+      .section-card {
+        border-radius: 1.1rem;
+      }
+
+      .sazonov-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sazonov-photo {
+        width: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-title">
+        <!-- Поместите файл логотипа в корень репозитория под именем logo.png -->
+        <img src="logo.png" alt="Логотип Сазоновских педагогических чтений" />
+        <div class="title-block">
+          <div class="lang lang-ru active">
+            <span class="site-subtitle">Международная научно-практическая конференция</span>
+            <span class="site-title">XI Сазоновские педагогические чтения</span>
+          </div>
+          <div class="lang lang-en">
+            <span class="site-subtitle">International Scientific and Practical Conference</span>
+            <span class="site-title">XI Sazonov Pedagogical Readings</span>
+          </div>
+        </div>
+      </div>
+      <nav aria-label="Главная навигация / Main navigation">
+        <ul class="nav-links">
+          <li><a href="#about">О конференции</a></li>
+          <li><a href="#themes">Темы</a></li>
+          <li><a href="#directions">Направления</a></li>
+          <li><a href="#organisers">Организаторы</a></li>
+          <li><a href="#moderators">Модераторы</a></li>
+          <li><a href="#speakers">Участники</a></li>
+          <li><a href="#sazonov">А.&nbsp;Д.&nbsp;Сазонов</a></li>
+          <li><a href="#programme">Программа</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+        <button id="langToggle" class="lang-toggle-btn" type="button" aria-label="Switch language to English">
+          <span class="flag" aria-hidden="true">🇷🇺</span>
+          <span class="lang-current">RU</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="hero">
+      <div class="hero-card">
+        <div class="lang lang-ru active">
+          <div class="hero-kicker">18 декабря 2025 · Курган</div>
+          <h1 class="hero-title">
+            XI Сазоновские педагогические чтения
+            <span class="hero-highlight">«Актуальные вопросы развития педагогической науки и образования»</span>
+          </h1>
+          <p class="hero-meta">
+            Очная и очно-заочная&nbsp;Всероссийская (с международным участием) научно-практическая конференция,
+            посвящённая памяти д-ра пед. наук, профессора
+            А.&nbsp;Д.&nbsp;Сазонова и 75-летию Курганского государственного университета.
+          </p>
+          <div class="hero-badges">
+            <span class="badge primary">18 декабря 2025</span>
+            <span class="badge">Курганский государственный университет</span>
+            <span class="badge">Институт педагогики, психологии и физической культуры</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn-primary" href="https://forms.yandex.ru/u/68f4828d02848fac498c1d83/" target="_blank" rel="noopener">
+              Зарегистрироваться
+            </a>
+            <a class="btn-ghost" href="#programme">См. программу конференции</a>
+          </div>
+        </div>
+        <div class="lang lang-en">
+          <div class="hero-kicker">18 December 2025 · Kurgan</div>
+          <h1 class="hero-title">
+            XI Sazonov Pedagogical Readings
+            <span class="hero-highlight">“Current Issues in the Development of Pedagogical Science and Education”</span>
+          </h1>
+          <p class="hero-meta">
+            On-site and blended-format International Scientific and Practical Conference dedicated to
+            the memory of Professor Aleksandr&nbsp;D.&nbsp;Sazonov, Doctor of Education, and to the
+            75th Anniversary of Kurgan State University.
+          </p>
+          <div class="hero-badges">
+            <span class="badge primary">18 December 2025</span>
+            <span class="badge">Kurgan State University</span>
+            <span class="badge">Institute of Pedagogy, Psychology and Physical Education</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn-primary" href="https://forms.yandex.ru/u/68f4828d02848fac498c1d83/" target="_blank" rel="noopener">
+              Register
+            </a>
+            <a class="btn-ghost" href="#programme">View Conference Programme</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-sidecard" aria-label="Key details">
+        <div class="lang lang-ru active">
+          <h2>Ключевая информация</h2>
+          <p>
+            Место проведения очной части конференции: малый конференц-зал (ауд. 407)
+            Курганского государственного университета.
+          </p>
+          <p class="hero-side-meta">
+            <strong>Адрес:</strong> г. Курган, ул. Советская, 63, стр. 4
+          </p>
+          <ul class="hero-side-list">
+            <li>Регистрация участников: 9:00–9:40</li>
+            <li>Начало пленарного заседания: 10:00</li>
+            <li>Формат участия: очно, очно-заочно, онлайн-доклады</li>
+          </ul>
+          <p class="hero-side-note">
+            Участникам выдаются электронные сертификаты и сборник материалов конференции.
+          </p>
+        </div>
+        <div class="lang lang-en">
+          <h2>Key Details</h2>
+          <p>
+            On-site venue: Small Conference Hall (Room 407), Kurgan State University main building.
+          </p>
+          <p class="hero-side-meta">
+            <strong>Address:</strong> 63 Sovetskaya St., Building 4, Kurgan, Russia
+          </p>
+          <ul class="hero-side-list">
+            <li>Participant registration: 9:00–9:40 am</li>
+            <li>Plenary session starts at 10:00 am</li>
+            <li>Formats: in-person, blended, online presentations</li>
+          </ul>
+          <p class="hero-side-note">
+            All participants receive electronic certificates and a digital proceedings volume.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <div class="sections-grid">
+      <div>
+        <section id="themes" class="section-card">
+          <h2 class="section-title">Темы / Themes</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">
+              Конференция объединяет исследователей, преподавателей и студентов, обсуждающих современные
+              тенденции развития педагогической науки, образования и воспитания в России и за рубежом.
+            </p>
+            <ul class="clean">
+              <li>история и современное состояние педагогики и образования;</li>
+              <li>личностное и профессиональное самоопределение обучающихся;</li>
+              <li>цифровизация и инновации в образовании;</li>
+              <li>инклюзивное и дополнительное образование детей и взрослых;</li>
+              <li>ценности семьи и патриотическое воспитание молодёжи;</li>
+              <li>здоровьесберегающие практики и культура здоровья в образовательной среде.</li>
+            </ul>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">
+              The conference brings together researchers, educators and students to discuss current trends in the
+              development of pedagogical science, education and upbringing in Russia and worldwide.
+            </p>
+            <ul class="clean">
+              <li>history and current state of pedagogy and education;</li>
+              <li>personal and professional self-determination of learners;</li>
+              <li>digitalisation and educational innovation;</li>
+              <li>inclusive and supplementary education for children and adults;</li>
+              <li>family values and patriotic education of young people;</li>
+              <li>health-preserving practices and a culture of well-being in education.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="directions" class="section-card">
+          <h2 class="section-title">Основные направления конференции</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">
+              Проблемное поле конференции включает следующие направления:
+            </p>
+            <div class="columns-2">
+              <ul class="clean">
+                <li>Общая педагогика, история педагогики и образования</li>
+                <li>Теория и методика обучения и воспитания</li>
+                <li>Педагогическая антропология</li>
+                <li>Психология образования</li>
+                <li>Социальная психология</li>
+                <li>Психология развития</li>
+                <li>Специальное образование</li>
+                <li>Дополнительное образование детей и взрослых</li>
+              </ul>
+              <ul class="clean">
+                <li>Методология и технологии профессионального образования</li>
+                <li>Философия культуры и образования, теория и история культуры и искусства</li>
+                <li>Цифровое образование</li>
+                <li>Инновации в образовании</li>
+                <li>Непрерывное образование</li>
+                <li>Семейное образование и воспитание</li>
+                <li>Физическое воспитание и здоровьесбережение</li>
+              </ul>
+            </div>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">
+              The conference problem field covers the following areas:
+            </p>
+            <div class="columns-2">
+              <ul class="clean">
+                <li>General pedagogy, history of pedagogy and education</li>
+                <li>Theory and methodology of teaching and upbringing</li>
+                <li>Pedagogical anthropology</li>
+                <li>Educational psychology</li>
+                <li>Social psychology</li>
+                <li>Developmental psychology</li>
+                <li>Special (inclusive) education</li>
+                <li>Supplementary education for children and adults</li>
+              </ul>
+              <ul class="clean">
+                <li>Methodology and technologies of vocational education</li>
+                <li>Philosophy of culture and education; theory and history of culture and arts</li>
+                <li>Digital education</li>
+                <li>Educational innovations</li>
+                <li>Lifelong learning</li>
+                <li>Family education and upbringing</li>
+                <li>Physical education and health-preserving practices</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="programme" class="section-card">
+          <h2 class="section-title">Программа конференции / Conference Programme</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">
+              Подробная программа пленарного заседания и секционных выступлений доступна для скачивания:
+            </p>
+            <ul class="download-list">
+              <li class="download-item">
+                <!-- Переименуйте файл русской программы в Programma_Sazonovskie_Chtenia_18_12_2025.pdf
+                     или обновите путь ниже под своё имя файла -->
+                <a class="download-link" href="Programma_Sazonovskie_Chtenia_18_12_2025%20(1).pdf" download>
+                  <span class="icon" aria-hidden="true">📄</span>
+                  <span>Программа конференции (русский язык, PDF)</span>
+                </a>
+              </li>
+              <li class="download-item">
+                <!-- Поместите английскую версию программы в файл Sazonov_Readings_Program.docx
+                     или обновите путь под свой вариант (например, PDF) -->
+                <a class="download-link" href="Sazonov_Readings_Program.docx" download>
+                  <span class="icon" aria-hidden="true">📄</span>
+                  <span>Programme (English version, DOCX)</span>
+                </a>
+              </li>
+            </ul>
+            <p class="footnote">
+              Сборник материалов конференции будет сформирован по итогам работы. В качестве примера
+              размещён открытый сборник предыдущих чтений.
+            </p>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">
+              The detailed schedule of the plenary session and presentations is available for download:
+            </p>
+            <ul class="download-list">
+              <li class="download-item">
+                <a class="download-link" href="Programma_Sazonovskie_Chtenia_18_12_2025%20(1).pdf" download>
+                  <span class="icon" aria-hidden="true">📄</span>
+                  <span>Conference Programme (Russian, PDF)</span>
+                </a>
+              </li>
+              <li class="download-item">
+                <a class="download-link" href="Sazonov_Readings_Program.docx" download>
+                  <span class="icon" aria-hidden="true">📄</span>
+                  <span>Conference Programme (English version, DOCX)</span>
+                </a>
+              </li>
+            </ul>
+            <p class="footnote">
+              The final proceedings volume will be compiled after the conference. As an example, a previous
+              open-access proceedings book is available for download.
+            </p>
+          </div>
+        </section>
+
+        <section id="proceedings" class="section-card">
+          <h2 class="section-title">Сборник материалов / Proceedings</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">
+              По итогам XI Сазоновских педагогических чтений планируется издание электронного сборника
+              научных материалов конференции.
+            </p>
+            <p>
+              В сборник принимаются статьи, содержащие введение, теоретические положения, описание
+              практических результатов, выводы и оформленные в соответствии с требованиями оргкомитета.
+            </p>
+            <ul class="download-list">
+              <li class="download-item">
+                <!-- Поместите пример сборника в файл Kh_Sazonovskie_Chtenia.pdf -->
+                <a class="download-link" href="Kh_Sazonovskie_Chtenia.pdf" download>
+                  <span class="icon" aria-hidden="true">📘</span>
+                  <span>Пример сборника материалов (PDF)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">
+              Following the XI Sazonov Pedagogical Readings, an electronic proceedings volume will be
+              published.
+            </p>
+            <p>
+              Papers should include an introduction, theoretical framework, description of practical results and
+              a conclusion, and must comply with the formatting requirements of the organising committee.
+            </p>
+            <ul class="download-list">
+              <li class="download-item">
+                <a class="download-link" href="Kh_Sazonovskie_Chtenia.pdf" download>
+                  <span class="icon" aria-hidden="true">📘</span>
+                  <span>Sample conference proceedings (PDF)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div>
+        <section id="organisers" class="section-card">
+          <h2 class="section-title">Организаторы / Organisers</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">Организаторами конференции выступают:</p>
+            <ul class="clean">
+              <li>ФГБОУ ВО «Курганский государственный университет» (КГУ)</li>
+              <li>Институт педагогики, психологии и физической культуры КГУ</li>
+              <li>Кафедра «Педагогика и методика обучения гуманитарным дисциплинам»</li>
+              <li>Кафедра «Профессиональное обучение, технология и дизайн»</li>
+              <li>Студенческое научное общество Института педагогики, психологии и физической культуры</li>
+            </ul>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">The conference is organised by:</p>
+            <ul class="clean">
+              <li>Kurgan State University (KSU)</li>
+              <li>Institute of Pedagogy, Psychology and Physical Education, KSU</li>
+              <li>Department of Pedagogy and Humanities Teaching</li>
+              <li>Department of Professional Training, Technology and Design</li>
+              <li>Student Scientific Society of the Institute of Pedagogy, Psychology and Physical Education</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="moderators" class="section-card">
+          <h2 class="section-title">Модераторы</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">Модераторы пленарной части и дискуссии:</p>
+            <ul class="person-list">
+              <li>
+                <span class="person-name">Елена Анатольевна Хомутникова</span>
+                <span class="person-role">— канд. филол. наук, доцент кафедры «Педагогика и методика обучения гуманитарным дисциплинам» КГУ</span>
+              </li>
+              <li>
+                <span class="person-name">Елена Михайловна Захарова</span>
+                <span class="person-role">— канд. пед. наук, доцент кафедры «Педагогика и методика обучения гуманитарным дисциплинам» КГУ</span>
+              </li>
+            </ul>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">Moderators of the plenary session and discussions:</p>
+            <ul class="person-list">
+              <li>
+                <span class="person-name">Elena Anatolievna Khomutnikova</span>
+                <span class="person-role">— Candidate of Philological Sciences, Associate Professor, Department of Pedagogy and Humanities Teaching, KSU</span>
+              </li>
+              <li>
+                <span class="person-name">Elena Mikhailovna Zakharova</span>
+                <span class="person-role">— Candidate of Pedagogical Sciences, Associate Professor, Department of Pedagogy and Humanities Teaching, KSU</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="speakers" class="section-card">
+          <h2 class="section-title">Известные участники / Featured Speakers</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">
+              В работе конференции принимают участие ведущие российские и зарубежные учёные, представители
+              органов управления образованием и практики.
+            </p>
+            <ul class="person-list">
+              <li>
+                <span class="person-name">Надежда Викторовна Дубив</span>
+                <span class="person-role">— ректор КГУ, канд. пед. наук, доцент</span>
+              </li>
+              <li>
+                <span class="person-name">Татьяна Александровна Ерахтина</span>
+                <span class="person-role">— д-р пед. наук, профессор, директор Российского образовательного центра, г. Аликанте, Испания</span>
+              </li>
+              <li>
+                <span class="person-name">Игорь Александрович Сазонов</span>
+                <span class="person-role">— д-р пед. наук, доцент, предприниматель, г. Курган</span>
+              </li>
+              <li>
+                <span class="person-name">Мария Сергеевна Журкова</span>
+                <span class="person-role">— канд. филол. наук, Университет Западного Онтарио, Канада</span>
+              </li>
+              <li>
+                <span class="person-name">Alisher Orifovich Ochilov</span>
+                <span class="person-role">— доцент Каршинского государственного университета, Республика Узбекистан</span>
+              </li>
+            </ul>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">
+              The conference gathers prominent Russian and international scholars, policy-makers and
+              practitioners in education.
+            </p>
+            <ul class="person-list">
+              <li>
+                <span class="person-name">Nadezhda Viktorovna Dubiv</span>
+                <span class="person-role">— Rector of Kurgan State University, Candidate of Pedagogical Sciences, Associate Professor</span>
+              </li>
+              <li>
+                <span class="person-name">Tatiana Aleksandrovna Erakhtina</span>
+                <span class="person-role">— Doctor of Education, Professor, Director of the Russian Educational Center, Alicante, Spain</span>
+              </li>
+              <li>
+                <span class="person-name">Igor Aleksandrovich Sazonov</span>
+                <span class="person-role">— Doctor of Education, Associate Professor, Entrepreneur, Kurgan, Russia</span>
+              </li>
+              <li>
+                <span class="person-name">Maria Sergeevna Zhurkova</span>
+                <span class="person-role">— Candidate of Philological Sciences, University of Western Ontario, Canada</span>
+              </li>
+              <li>
+                <span class="person-name">Alisher Orifovich Ochilov</span>
+                <span class="person-role">— Associate Professor, Karshi State University, Republic of Uzbekistan</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="sazonov" class="section-card">
+          <h2 class="section-title">Кому посвящена конференция / In Honour of</h2>
+          <div class="sazonov-card">
+            <div class="sazonov-photo">
+              <!-- Поместите фотографию А.Д. Сазонова под именем saz.png -->
+              <img src="saz.png" alt="Портрет Александра Дмитриевича Сазонова" />
+            </div>
+            <div>
+              <div class="lang lang-ru active">
+                <p class="section-lead">
+                  Конференция посвящена памяти Александра Дмитриевича Сазонова (1928–2003) — доктора
+                  педагогических наук, профессора, ректора Курганского государственного педагогического
+                  института (1968–1995).
+                </p>
+                <p>
+                  А.&nbsp;Д.&nbsp;Сазонов — один из ведущих отечественных исследователей в области профессиональной
+                  ориентации школьников. Автор более 300 научных трудов, под его руководством подготовлены
+                  десятки кандидатов и докторов наук. Он внёс значительный вклад в развитие педагогического
+                  образования Урала и всей страны.
+                </p>
+              </div>
+              <div class="lang lang-en">
+                <p class="section-lead">
+                  The conference is dedicated to the memory of Aleksandr Dmitrievich Sazonov (1928–2003),
+                  Doctor of Education, Professor and Rector of Kurgan State Pedagogical Institute from 1968 to 1995.
+                </p>
+                <p>
+                  Prof. Sazonov was a leading Russian scholar in the field of school students’ vocational guidance.
+                  He authored over 300 scholarly works, and supervised dozens of doctoral and candidate theses.
+                  His research and leadership played a key role in the development of teacher education in the
+                  Trans‑Ural region and across Russia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacts" class="section-card">
+          <h2 class="section-title">Контакты / Contacts</h2>
+          <div class="lang lang-ru active">
+            <p class="section-lead">
+              По всем вопросам участия в конференции можно обращаться в оргкомитет XI Сазоновских
+              педагогических чтений.
+            </p>
+            <div class="contacts-grid">
+              <div class="contact-block">
+                <strong>Почтовый адрес университета</strong>
+                <p>
+                  640020, Россия, г. Курган,<br />
+                  ул. Советская, 63, стр. 4<br />
+                  ФГБОУ ВО «Курганский государственный университет»
+                </p>
+              </div>
+              <div class="contact-block">
+                <strong>Оргкомитет конференции</strong>
+                <p>
+                  Институт педагогики, психологии и физической культуры<br />
+                  Кафедра «Педагогика и методика обучения гуманитарным дисциплинам»
+                </p>
+              </div>
+              <div class="contact-block">
+                <strong>Электронная почта</strong>
+                <p>
+                  Для отправки статей: <a href="mailto:kgu_ped@mail.ru">kgu_ped@mail.ru</a>
+                </p>
+                <p>
+                  Для общих вопросов: <a href="mailto:rektorat@kgsu.ru">rektorat@kgsu.ru</a>
+                </p>
+              </div>
+              <div class="contact-block">
+                <strong>Регистрация участников</strong>
+                <p>
+                  Онлайн-заявка на участие:
+                  <br />
+                  <a href="https://forms.yandex.ru/u/68f4828d02848fac498c1d83/" target="_blank" rel="noopener">
+                    Форма регистрации участника
+                  </a>
+                </p>
+              </div>
+            </div>
+            <p class="footnote">
+              При подаче статьи в название файла рекомендуется включать фамилию и инициалы автора и город
+              (например, «Иванов И.И. Москва.doc»).
+            </p>
+          </div>
+          <div class="lang lang-en">
+            <p class="section-lead">
+              For all questions related to participation, please contact the Organising Committee of the XI
+              Sazonov Pedagogical Readings.
+            </p>
+            <div class="contacts-grid">
+              <div class="contact-block">
+                <strong>University Address</strong>
+                <p>
+                  640020, Kurgan, Russia<br />
+                  63 Sovetskaya St., Building 4<br />
+                  Kurgan State University
+                </p>
+              </div>
+              <div class="contact-block">
+                <strong>Organising Committee</strong>
+                <p>
+                  Institute of Pedagogy, Psychology and Physical Education<br />
+                  Department of Pedagogy and Humanities Teaching
+                </p>
+              </div>
+              <div class="contact-block">
+                <strong>E-mail</strong>
+                <p>
+                  For paper submissions: <a href="mailto:kgu_ped@mail.ru">kgu_ped@mail.ru</a>
+                </p>
+                <p>
+                  General enquiries: <a href="mailto:rektorat@kgsu.ru">rektorat@kgsu.ru</a>
+                </p>
+              </div>
+              <div class="contact-block">
+                <strong>Participant Registration</strong>
+                <p>
+                  Online registration form:
+                  <br />
+                  <a href="https://forms.yandex.ru/u/68f4828d02848fac498c1d83/" target="_blank" rel="noopener">
+                    Participant registration form
+                  </a>
+                </p>
+              </div>
+            </div>
+            <p class="footnote">
+              When submitting a paper, please include the author&apos;s surname, initials and city in the file name
+              (for example, “Ivanov I.I. Moscow.doc”).
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="lang lang-ru active">
+        <span>© XI Сазоновские педагогические чтения, Курганский государственный университет, 2025.</span>
+      </div>
+      <div class="lang lang-en">
+        <span>© XI Sazonov Pedagogical Readings, Kurgan State University, 2025.</span>
+      </div>
+      <span>Разработка сайта: HTML + CSS + JS (GitHub-ready).</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const langToggleBtn = document.getElementById("langToggle");
+      const langElements = document.querySelectorAll(".lang");
+      const currentSpan = langToggleBtn.querySelector(".lang-current");
+      const flagSpan = langToggleBtn.querySelector(".flag");
+      let currentLang = "ru";
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        langElements.forEach((el) => {
+          if (el.classList.contains("lang-" + lang)) {
+            el.classList.add("active");
+          } else {
+            el.classList.remove("active");
+          }
+        });
+
+        if (lang === "ru") {
+          currentSpan.textContent = "RU";
+          flagSpan.textContent = "🇷🇺";
+          langToggleBtn.setAttribute("aria-label", "Switch language to English");
+        } else {
+          currentSpan.textContent = "EN";
+          flagSpan.textContent = "🇬🇧";
+          langToggleBtn.setAttribute("aria-label", "Переключить язык на русский");
+        }
+      }
+
+      langToggleBtn.addEventListener("click", function () {
+        setLanguage(currentLang === "ru" ? "en" : "ru");
+      });
+    })();
+  </script>
+</body>
+</html>
